@@ -1,0 +1,10 @@
+/* Initial states for GSAP scroll animations (components/ScrollAnimations.tsx).
+   Hidden only when motion is allowed, so reduced-motion users see content at once;
+   a <noscript> rule in the layout shows everything if JavaScript is unavailable.
+   Append to the global stylesheet. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-animate]:not([data-animate="stagger"]),
+  [data-animate="stagger"] > * {
+    visibility: hidden;
+  }
+}
