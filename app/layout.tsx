@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import ScrollAnimations from "@/components/ScrollAnimations";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
@@ -31,6 +32,11 @@ export default function RootLayout({
           {children}
           <Footer />
         </SmoothScroll>
+        {/* After SmoothScroll: ScrollSmoother must exist before any ScrollTriggers */}
+        <ScrollAnimations />
+        <noscript>
+          <style>{`[data-animate], [data-animate] > * { visibility: visible !important; }`}</style>
+        </noscript>
       </body>
     </html>
   );

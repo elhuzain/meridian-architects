@@ -24,6 +24,8 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
         content: "#smooth-content",
         smooth: 1.2,
         smoothTouch: false,
+        // Enables data-speed / data-lag parallax on any element
+        effects: true,
       });
 
       // Native hash jumps don't work inside the smoothed wrapper, so route same-page anchors through the smoother
