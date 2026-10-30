@@ -14,7 +14,7 @@ export default function Footer() {
   return (
     <footer className="section-dark">
       <div className="container-site">
-        <div className="grid-site gap-y-12 border-t border-line pt-20 pb-24">
+        <div data-animate="stagger" className="grid-site gap-y-12 border-t border-line pt-20 pb-24">
           <Link href="/" aria-label="Meridian Architects, home" className="col-span-12 self-start justify-self-start lg:col-span-4">
             <Logo />
           </Link>
@@ -67,6 +67,7 @@ export default function Footer() {
 
         <p
           aria-hidden
+          data-animate="fade-up"
           className="text-[clamp(3.5rem,13vw,12rem)] leading-[0.85] font-extralight tracking-[-0.04em]"
         >
           Meridian

@@ -13,7 +13,7 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} className="grid grid-cols-1 gap-x-gutter gap-y-10 sm:grid-cols-2">
+    <form onSubmit={onSubmit} data-animate="stagger" data-delay="0.2" className="grid grid-cols-1 gap-x-gutter gap-y-10 sm:grid-cols-2">
       <div>
         <label htmlFor="contact-name" className="field-label">
           Name

@@ -29,15 +29,15 @@ export default function Team() {
       <div className="container-site">
         <div className="grid-site gap-y-16">
           <div className="col-span-12 lg:col-span-4">
-            <h2>The people behind the studio</h2>
-            <p className="copy mt-stack">
+            <h2 data-animate="fade-up">The people behind the studio</h2>
+            <p data-animate="fade-up" className="copy mt-stack">
               The studio is led by an architect and an engineer who have worked
               together since its founding, sharing responsibility for every
               project from the first sketch to completion.
             </p>
           </div>
 
-          <ul className="col-span-12 grid grid-cols-1 gap-x-gutter gap-y-16 sm:grid-cols-2 lg:col-span-7 lg:col-start-6">
+          <ul data-animate="stagger" className="col-span-12 grid grid-cols-1 gap-x-gutter gap-y-16 sm:grid-cols-2 lg:col-span-7 lg:col-start-6">
             {members.map((member) => (
               <li key={member.name} className="group">
                 <div className="media aspect-4/5">

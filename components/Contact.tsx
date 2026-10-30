@@ -7,14 +7,14 @@ export default function Contact() {
       <div className="container-site">
         <div className="grid-site gap-y-20">
           <div className="col-span-12 lg:col-span-5">
-            <h2>Let’s build something that lasts</h2>
-            <p className="copy mt-stack">
+            <h2 data-animate="fade-up">Let’s build something that lasts</h2>
+            <p data-animate="fade-up" className="copy mt-stack">
               Whether you have a site, a brief or only an idea, we would like to
               hear about it. Tell us a little about your project and we will
               arrange a first conversation.
             </p>
 
-            <dl className="mt-16 grid grid-cols-2 gap-gutter">
+            <dl data-animate="stagger" className="mt-16 grid grid-cols-2 gap-gutter">
               <div>
                 <dt className="meta">Email</dt>
                 <dd className="mt-3">
@@ -33,7 +33,7 @@ export default function Contact() {
               </div>
             </dl>
 
-            <ul aria-label="Social links" className="mt-16 border-t border-line">
+            <ul aria-label="Social links" data-animate="stagger" className="mt-16 border-t border-line">
               {socials.map((social) => (
                 <li key={social.label} className="border-b border-line">
                   <a

@@ -57,16 +57,16 @@ export default function Services() {
     <section id="services" className="section scroll-mt-20">
       <div className="container-site">
         <div className="grid-site gap-y-8">
-          <h2 className="col-span-12 md:col-span-7 lg:col-span-6">
+          <h2 data-animate="fade-up" className="col-span-12 md:col-span-7 lg:col-span-6">
             Services across the life of a building
           </h2>
-          <p className="copy col-span-12 self-end md:col-span-5 lg:col-span-4 lg:col-start-9">
+          <p data-animate="fade-up" className="copy col-span-12 self-end md:col-span-5 lg:col-span-4 lg:col-start-9">
             Four disciplines under one roof, so that design and delivery stay
             connected from the first sketch to the final detail.
           </p>
         </div>
 
-        <ul className="mt-20 grid grid-cols-1 border-t border-l border-line md:grid-cols-2 lg:grid-cols-4">
+        <ul data-animate="stagger" className="mt-20 grid grid-cols-1 border-t border-l border-line md:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => (
             <li
               key={service.title}

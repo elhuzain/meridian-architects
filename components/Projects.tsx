@@ -15,8 +15,8 @@ export default function Projects() {
     <section id="projects" className="section scroll-mt-20 bg-concrete">
       <div className="container-site">
         <div className="flex flex-wrap items-end justify-between gap-8">
-          <h2>Selected projects</h2>
-          <Link href="/projects" className="link-underline text-ink">
+          <h2 data-animate="fade-up">Selected projects</h2>
+          <Link href="/projects" data-animate="fade-up" className="link-underline text-ink">
             All projects
           </Link>
         </div>
@@ -27,21 +27,24 @@ export default function Projects() {
             return (
               <li key={project.slug} className={`col-span-12 ${layout.item}`}>
                 <Link href={`/projects/${project.slug}`} className="group block">
-                  <div className={`media aspect-4/5 ${layout.media}`}>
+                  <div data-animate="reveal" className={`media aspect-4/5 ${layout.media}`}>
                     {project.image ? (
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        sizes="(min-width: 768px) 60vw, 100vw"
-                        className="object-cover transition-transform duration-1000 ease-arch group-hover:scale-[1.025]"
-                      />
+                      // Taller than the frame so the parallax shift never shows an edge
+                      <div data-speed="auto" className="absolute inset-x-0 -top-[10%] h-[120%]">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          sizes="(min-width: 768px) 60vw, 100vw"
+                          className="object-cover transition-transform duration-1000 ease-arch group-hover:scale-[1.025]"
+                        />
+                      </div>
                     ) : (
                       <div role="img" aria-label={`${project.title} image placeholder`} className="size-full" />
                     )}
                   </div>
 
-                  <div className="mt-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-t border-line pt-4">
+                  <div data-animate="fade-up" data-delay="0.5" className="mt-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-t border-line pt-4">
                     <h3 className="transition-colors duration-500 ease-arch group-hover:text-accent">
                       {project.title}
                     </h3>
@@ -56,7 +59,7 @@ export default function Projects() {
         </ul>
 
         {/* Demo imagery: CC BY-SA requires visible attribution */}
-        <p className="meta mt-24 max-w-[80ch] normal-case tracking-normal">
+        <p data-animate="fade" className="meta mt-24 max-w-[80ch] normal-case tracking-normal">
           Demo images via Wikimedia Commons:{" "}
           {projects
             .filter((project) => project.credit)
