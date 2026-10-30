@@ -77,6 +77,13 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Meridian Architects</p>
           <p>Architecture & engineering</p>
         </div>
+
+        <p className="border-t border-line py-6 text-meta tracking-normal text-muted">
+          Built by{" "}
+          <a href="https://elhuzain.com" target="_blank" rel="noopener noreferrer" className="link-underline text-ink">
+            elhuzain
+          </a>
+        </p>
       </div>
     </footer>
   );
