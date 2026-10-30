@@ -13,7 +13,7 @@ const links = [
   { href: "/#projects", label: "Projects" },
   { href: "/#studio", label: "Studio" },
   { href: "/#services", label: "Services" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/#contact", label: "Contact", cta: true },
 ];
 
 export default function Header() {
@@ -88,11 +88,16 @@ export default function Header() {
         </Link>
 
         <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex gap-12 text-[0.9375rem] font-light text-ink">
+          <ul className="flex items-center gap-12 text-[0.9375rem] font-light text-ink">
             {links.map((link) => (
               <li key={link.href}>
-                <a href={link.href} className="link">
+                <a href={link.href} className={link.cta ? "btn" : "link"}>
                   {link.label}
+                  {link.cta && (
+                    <svg aria-hidden viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth={1.25}>
+                      <path d="M2 8h12M9 3l5 5-5 5" />
+                    </svg>
+                  )}
                 </a>
               </li>
             ))}
