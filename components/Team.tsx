@@ -4,7 +4,7 @@ type Member = {
   name: string;
   role: string;
   linkedin: string;
-  /** Path under /public, e.g. "/team/elena-varga.jpg" */
+  /** Path under /public, e.g. "/team/elena-varga.webp" */
   image?: string;
 };
 
@@ -13,13 +13,13 @@ const members: Member[] = [
     name: "Elena Varga",
     role: "Founding partner, architect",
     linkedin: "https://www.linkedin.com/",
-    image: "/team/elena-varga.jpg",
+    image: "/team/elena-varga.webp",
   },
   {
     name: "Tomas Lindqvist",
     role: "Partner, structural engineer",
     linkedin: "https://www.linkedin.com/",
-    image: "/team/tomas-lindqvist.jpg",
+    image: "/team/tomas-lindqvist.webp",
   },
 ];
 
