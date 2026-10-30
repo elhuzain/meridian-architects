@@ -16,7 +16,7 @@ export default function About() {
               {/* Taller than the frame so the parallax shift never shows an edge */}
               <div data-speed="auto" className="absolute inset-x-0 -top-[10%] h-[120%]">
                 <Image
-                  src="/studio/workshop-floor.jpg"
+                  src="/studio/workshop-floor.webp"
                   alt="An architect cutting parts for a timber model on the studio workshop floor"
                   fill
                   sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw"
