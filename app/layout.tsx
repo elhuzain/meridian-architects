@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import DemoDialog from "@/components/DemoDialog";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollAnimations from "@/components/ScrollAnimations";
@@ -56,6 +57,7 @@ export default function RootLayout({
         </SmoothScroll>
         {/* After SmoothScroll: ScrollSmoother must exist before any ScrollTriggers */}
         <ScrollAnimations />
+        <DemoDialog />
         <noscript>
           <style>{`[data-animate], [data-animate] > * { visibility: visible !important; }`}</style>
         </noscript>

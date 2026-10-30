@@ -14,7 +14,7 @@ export default function Contact() {
               arrange a first conversation.
             </p>
 
-            <dl data-animate="stagger" className="mt-16 grid grid-cols-2 gap-gutter">
+            <dl data-animate="stagger" className="mt-16 grid sm:grid-cols-2 gap-gutter">
               <div>
                 <dt className="meta">Email</dt>
                 <dd className="mt-3">
@@ -40,6 +40,7 @@ export default function Contact() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    data-demo-link
                     className="flex items-center justify-between py-5 transition-colors duration-300 ease-arch hover:text-accent"
                   >
                     {social.label}

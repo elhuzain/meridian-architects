@@ -68,6 +68,7 @@ export default function Team() {
                     href={member.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
+                    data-demo-link
                     aria-label={`${member.name} on LinkedIn`}
                     className="flex size-10 shrink-0 items-center justify-center border border-ink text-ink transition-colors duration-300 ease-arch hover:bg-ink hover:text-paper"
                   >

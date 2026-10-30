@@ -41,7 +41,7 @@ export default function Footer() {
             <ul className="mt-6 space-y-3">
               {socials.map((social) => (
                 <li key={social.label}>
-                  <a href={social.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                  <a href={social.href} target="_blank" rel="noopener noreferrer" data-demo-link className={linkClass}>
                     {social.label}
                   </a>
                 </li>
