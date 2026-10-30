@@ -1,8 +1,13 @@
 "use client";
 
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+gsap.registerPlugin(useGSAP);
 
 const links = [
   { href: "/#projects", label: "Projects" },
@@ -13,15 +18,65 @@ const links = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLElement>(null);
+  const timeline = useRef<gsap.core.Timeline>(null);
+  const openRef = useRef(open);
+
+  // One paused timeline: opening plays it, closing reverses it from wherever it is
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        { motion: "(prefers-reduced-motion: no-preference)", reduce: "(prefers-reduced-motion: reduce)" },
+        (context) => {
+          const speed = context.conditions?.reduce ? 0 : 1;
+          const menu = menuRef.current;
+
+          timeline.current = gsap
+            .timeline({
+              paused: true,
+              onStart: () => gsap.set(menu, { visibility: "visible" }),
+              onReverseComplete: () => gsap.set(menu, { visibility: "hidden" }),
+            })
+            // Panel wipes down from under the header
+            .fromTo(
+              menu,
+              { clipPath: "inset(0% 0% 100% 0%)" },
+              { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7 * speed, ease: "power3.inOut" },
+            )
+            // Links rise in one after another as the panel finishes
+            .fromTo(
+              "li",
+              { autoAlpha: 0, y: 24 },
+              { autoAlpha: 1, y: 0, duration: 0.6 * speed, stagger: 0.06 * speed, ease: "power2.out" },
+              "-=0.35",
+            );
+
+          // Keep the current state if the timeline is rebuilt while open
+          if (openRef.current) timeline.current.progress(1);
+        },
+      );
+
+      return () => mm.revert();
+    },
+    { scope: menuRef },
+  );
 
   useEffect(() => {
+    openRef.current = open;
+    if (open) timeline.current?.play();
+    else timeline.current?.reverse();
+
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
+    ScrollSmoother.get()?.paused(true);
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      ScrollSmoother.get()?.paused(false);
     };
   }, [open]);
 
@@ -55,30 +110,24 @@ export default function Header() {
         </button>
       </div>
 
-      {open && (
-        <nav
-          id="mobile-menu"
-          aria-label="Primary"
-          className="fixed inset-x-0 top-20 bottom-0 animate-reveal overflow-y-auto bg-paper md:hidden"
-        >
-          <ul className="container-site pt-8">
-            {links.map((link, i) => (
-              <li key={link.href} className="border-b border-line">
-                <a
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="flex items-baseline gap-8 py-6"
-                >
-                  <span className="meta w-6">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-h2">{link.label}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
+      {/* Always mounted so the timeline can reverse; hidden (and out of the tab order) until opened */}
+      <nav
+        ref={menuRef}
+        id="mobile-menu"
+        aria-label="Primary"
+        className="invisible fixed inset-x-0 top-20 bottom-0 overflow-y-auto bg-paper md:hidden"
+      >
+        <ul className="container-site pt-8">
+          {links.map((link, i) => (
+            <li key={link.href} className="border-b border-line">
+              <a href={link.href} onClick={() => setOpen(false)} className="flex items-baseline gap-8 py-6">
+                <span className="meta w-6">{String(i + 1).padStart(2, "0")}</span>
+                <span className="text-h2">{link.label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 }

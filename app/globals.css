@@ -70,19 +70,6 @@
   --ease-arch: cubic-bezier(0.2, 0.6, 0.2, 1);
   --default-transition-duration: 400ms;
   --default-transition-timing-function: cubic-bezier(0.2, 0.6, 0.2, 1);
-
-  --animate-reveal: reveal 900ms var(--ease-arch) both;
-
-  @keyframes reveal {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
 }
 
 /* ------------------------------------------------------------------
