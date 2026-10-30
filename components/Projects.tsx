@@ -14,12 +14,7 @@ export default function Projects() {
   return (
     <section id="projects" className="section scroll-mt-20 bg-concrete">
       <div className="container-site">
-        <div className="flex flex-wrap items-end justify-between gap-8">
-          <h2 data-animate="fade-up">Selected projects</h2>
-          <Link href="/projects" data-animate="fade-up" className="link-underline text-ink">
-            All projects
-          </Link>
-        </div>
+        <h2 data-animate="fade-up">Selected projects</h2>
 
         <ul className="grid-site mt-20 gap-y-20 md:gap-y-32">
           {projects.map((project, i) => {
