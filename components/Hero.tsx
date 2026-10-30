@@ -57,7 +57,7 @@ export default function Hero() {
             <div className="absolute inset-0 flex items-end p-6 sm:p-10 lg:p-16">
               <div className="grid w-full grid-cols-12 gap-x-gutter gap-y-12">
                 <div className="col-span-12 lg:col-span-8">
-                  <h1 data-animate="fade-up" data-delay="0.7" className="text-paper text-7xl!">Architecture that holds its ground, shaped by light and structure</h1>
+                  <h1 data-animate="fade-up" data-delay="0.7" className="text-paper text-2xl md:text-7xl!">Architecture that holds its ground, shaped by light and structure</h1>
                   <p data-animate="fade-up" data-delay="0.7" className="mt-stack max-w-[52ch] text-body text-paper/80">
                     We are an architecture and engineering studio designing civic, residential and workplace
                     buildings. Each project begins with the site and ends with a structure built to last for
