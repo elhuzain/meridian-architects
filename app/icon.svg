@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 0 88 88">
+  <!-- Logo mark on a square canvas; strokes thickened from 1.25 so it reads at 16px -->
+  <style>
+    .line { fill: none; stroke: #161616; stroke-width: 3; }
+    .dot { fill: #161616; }
+    @media (prefers-color-scheme: dark) {
+      .line { stroke: #f6f5f1; }
+      .dot { fill: #f6f5f1; }
+    }
+  </style>
+  <rect class="line" x="4" y="16" width="56" height="56" />
+  <path class="line" d="M32 4V84" />
+  <path class="line" d="M4 72A28 42 0 0 1 60 72" />
+  <rect class="dot" x="28" y="26" width="8" height="8" />
+</svg>
