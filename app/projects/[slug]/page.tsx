@@ -38,8 +38,8 @@ export default async function ProjectPage({ params }: Props) {
       {/* Title */}
       <section className="container-site pt-32 pb-16 md:pt-40 md:pb-20">
         <div className="grid-site gap-y-8">
-          <h1 className="col-span-12 lg:col-span-8">{project.title}</h1>
-          <p className="meta col-span-12 self-end lg:col-span-3 lg:col-start-10 lg:text-right">
+          <h1 data-animate="fade-up" className="col-span-12 lg:col-span-8">{project.title}</h1>
+          <p data-animate="fade-up" className="meta col-span-12 self-end lg:col-span-3 lg:col-start-10 lg:text-right">
             {project.location}, {project.year}
           </p>
         </div>
@@ -47,20 +47,23 @@ export default async function ProjectPage({ params }: Props) {
 
       {/* Lead image */}
       <figure className="container-site">
-        <div className="media aspect-4/5 md:aspect-video lg:aspect-[21/9]">
+        <div data-animate="reveal" data-delay="0.3" className="media aspect-4/5 md:aspect-video lg:aspect-[21/9]">
           {project.image && (
-            <Image
-              src={project.image}
-              alt={`${project.title}, ${project.location}`}
-              fill
-              priority
-              sizes="(min-width: 1440px) 1280px, 100vw"
-              className="object-cover"
-            />
+            // Taller than the frame so the parallax shift never shows an edge
+            <div data-speed="auto" className="absolute inset-x-0 -top-[10%] h-[120%]">
+              <Image
+                src={project.image}
+                alt={`${project.title}, ${project.location}`}
+                fill
+                priority
+                sizes="(min-width: 1440px) 1280px, 100vw"
+                className="object-cover"
+              />
+            </div>
           )}
         </div>
         {credit && (
-          <figcaption className="meta mt-4 normal-case tracking-normal">
+          <figcaption data-animate="fade" data-delay="1.2" className="meta mt-4 normal-case tracking-normal">
             Demo image:{" "}
             <a href={credit.source} target="_blank" rel="noopener noreferrer" className="link-underline">
               photo by {credit.author}
@@ -77,7 +80,7 @@ export default async function ProjectPage({ params }: Props) {
       {/* Facts and description */}
       <section className="section container-site">
         <div className="grid-site gap-y-16">
-          <dl className="col-span-12 border-t border-line lg:col-span-4">
+          <dl data-animate="stagger" className="col-span-12 border-t border-line lg:col-span-4">
             {details.facts.map((fact) => (
               <div
                 key={fact.label}
@@ -90,8 +93,8 @@ export default async function ProjectPage({ params }: Props) {
           </dl>
 
           <div className="col-span-12 lg:col-span-6 lg:col-start-7">
-            <p className="text-lead text-ink">{details.summary}</p>
-            <div className="mt-stack space-y-6">
+            <p data-animate="fade-up" className="text-lead text-ink">{details.summary}</p>
+            <div data-animate="stagger" data-delay="0.15" className="mt-stack space-y-6">
               {details.description.map((paragraph) => (
                 <p key={paragraph.slice(0, 32)} className="copy">
                   {paragraph}
@@ -105,9 +108,9 @@ export default async function ProjectPage({ params }: Props) {
       {/* Other projects */}
       <section aria-labelledby="other-projects" className="section bg-concrete">
         <div className="container-site">
-          <h2 id="other-projects">Other projects</h2>
+          <h2 id="other-projects" data-animate="fade-up">Other projects</h2>
 
-          <ul className="mt-16 grid grid-cols-1 gap-x-gutter gap-y-16 md:grid-cols-3">
+          <ul data-animate="stagger" className="mt-16 grid grid-cols-1 gap-x-gutter gap-y-16 md:grid-cols-3">
             {others.map((other) => (
               <li key={other.slug}>
                 <Link href={`/projects/${other.slug}`} className="group block">
