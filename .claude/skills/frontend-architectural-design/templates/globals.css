@@ -1,0 +1,357 @@
+/* Tailwind CSS v4 global stylesheet for the architectural design system.
+   Fonts: load Inter (weights 200-500) with next/font as --font-inter, or change --font-sans. */
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens
+   Defined in @theme so each one is both a CSS variable and a utility
+   (e.g. --color-ink -> text-ink / bg-ink / border-ink).
+   ------------------------------------------------------------------ */
+@theme {
+  /* Color: near-monochrome with one muted accent */
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-paper: #f6f5f1;            /* page background, warm off-white */
+  --color-concrete: #ecebe6;         /* alternating sections */
+  --color-stone: #d9d7d0;            /* image placeholders, deeper tone */
+  --color-ink: #161616;              /* text, near-black */
+  --color-muted: #6b6b66;            /* body copy, captions */
+  --color-line: rgba(22, 22, 22, 0.12); /* hairlines */
+  --color-pattern: rgba(22, 22, 22, 0.07); /* background patterns, fainter than hairlines */
+  --color-accent: #8a7a5c;           /* bronze, single details only */
+
+  /* Typography */
+  --font-sans: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+
+  --text-h1: clamp(2.75rem, 6vw, 6rem);
+  --text-h1--line-height: 1.05;
+  --text-h1--letter-spacing: -0.025em;
+  --text-h1--font-weight: 200;
+
+  --text-h2: clamp(2rem, 4vw, 3.75rem);
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 300;
+
+  --text-h3: clamp(1.375rem, 2vw, 1.75rem);
+  --text-h3--line-height: 1.15;
+  --text-h3--letter-spacing: -0.015em;
+  --text-h3--font-weight: 300;
+
+  --text-lead: clamp(1.125rem, 1.4vw, 1.3125rem);
+  --text-lead--line-height: 1.7;
+  --text-lead--font-weight: 300;
+
+  --text-body: 1.0625rem;            /* 17px */
+  --text-body--line-height: 1.75;
+  --text-body--font-weight: 300;
+
+  --text-meta: 0.6875rem;            /* 11px, uppercase metadata */
+  --text-meta--line-height: 1.5;
+  --text-meta--letter-spacing: 0.16em;
+  --text-meta--font-weight: 400;
+
+  /* Space: 8px base (Tailwind's 4px step, use even values) */
+  --spacing-section: clamp(96px, 14vw, 200px);
+  --spacing-gutter: clamp(16px, 2.5vw, 32px);
+  --spacing-edge: clamp(20px, 5vw, 80px);
+  --spacing-stack: 2rem;             /* heading -> paragraph gap */
+
+  --container-site: 1440px;
+  --container-copy: 64ch;
+
+  /* Shape: no radius, no shadows anywhere */
+  --radius-*: initial;
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --blur-*: initial;
+
+  /* Motion */
+  --ease-arch: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --default-transition-duration: 400ms;
+  --default-transition-timing-function: cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-radius: 0;
+    box-shadow: none;
+    border-color: var(--color-line);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    line-height: var(--text-body--line-height);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: var(--text-h1);
+    font-weight: var(--text-h1--font-weight);
+    line-height: var(--text-h1--line-height);
+    letter-spacing: var(--text-h1--letter-spacing);
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+    font-weight: var(--text-h2--font-weight);
+    line-height: var(--text-h2--line-height);
+    letter-spacing: var(--text-h2--letter-spacing);
+  }
+
+  h3 {
+    font-size: var(--text-h3);
+    font-weight: var(--text-h3--font-weight);
+    line-height: var(--text-h3--line-height);
+    letter-spacing: var(--text-h3--letter-spacing);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-ink);
+    outline-offset: 4px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Layout utilities
+   ------------------------------------------------------------------ */
+
+/* Centered page frame with fluid edge padding */
+@utility container-site {
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-inline: var(--spacing-edge);
+}
+
+/* 12-column grid with consistent gutters */
+@utility grid-site {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--spacing-gutter);
+}
+
+@utility section {
+  padding-block: var(--spacing-section);
+}
+
+/* Inverted section: swaps tokens so all utilities inside follow */
+@utility section-dark {
+  --color-paper: #161616;
+  --color-concrete: #1f1f1e;
+  --color-stone: #2a2a28;
+  --color-ink: #f6f5f1;
+  --color-muted: #a3a29c;
+  --color-line: rgba(246, 245, 241, 0.14);
+  --color-pattern: rgba(246, 245, 241, 0.07);
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* ------------------------------------------------------------------
+   Typography utilities
+   ------------------------------------------------------------------ */
+@utility copy {
+  max-width: var(--container-copy);
+  color: var(--color-muted);
+  font-size: var(--text-body);
+  font-weight: 300;
+  line-height: var(--text-body--line-height);
+}
+
+@utility meta {
+  font-size: var(--text-meta);
+  line-height: var(--text-meta--line-height);
+  letter-spacing: var(--text-meta--letter-spacing);
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* ------------------------------------------------------------------
+   Components
+   ------------------------------------------------------------------ */
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 14px 28px;
+    border: 1px solid var(--color-ink);
+    background: transparent;
+    color: var(--color-ink);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition:
+      background-color 300ms var(--ease-arch),
+      color 300ms var(--ease-arch);
+  }
+
+  .btn:hover {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .btn-solid {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .btn-solid:hover {
+    background: transparent;
+    color: var(--color-ink);
+  }
+
+  /* Hairline that grows on hover */
+  .link {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    padding-bottom: 2px;
+    transition:
+      background-size 500ms var(--ease-arch),
+      color 300ms var(--ease-arch);
+  }
+
+  .link:hover {
+    background-size: 100% 1px;
+  }
+
+  .link-underline {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: color 300ms var(--ease-arch);
+  }
+
+  .link-underline:hover {
+    color: var(--color-accent);
+  }
+
+  .field-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: var(--text-meta);
+    letter-spacing: var(--text-meta--letter-spacing);
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .field {
+    width: 100%;
+    padding: 0.75rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--color-line);
+    background: transparent;
+    color: var(--color-ink);
+    font: inherit;
+    transition: border-color 300ms var(--ease-arch);
+  }
+
+  .field:focus {
+    outline: none;
+    border-bottom-color: var(--color-ink);
+  }
+
+  .field::placeholder {
+    color: var(--color-muted);
+    opacity: 0.6;
+  }
+
+  /* Image frame with slow hover scale; set aspect ratio via aspect-[4/5] etc. */
+  .media {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-stone);
+  }
+
+  .media > img,
+  .media > video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1000ms var(--ease-arch);
+  }
+
+  .media-hover:hover > img,
+  .media-hover:hover > video {
+    transform: scale(1.025);
+  }
+
+  /* Background patterns: one per page, never behind body text */
+  .bg-grid {
+    background-image:
+      linear-gradient(var(--color-pattern) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-pattern) 1px, transparent 1px);
+    background-size: var(--grid-size, 80px) var(--grid-size, 80px);
+  }
+
+  .bg-columns {
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--color-pattern) 0 1px,
+      transparent 1px calc(100% / 12)
+    );
+  }
+
+  .bg-dots {
+    background-image: radial-gradient(var(--color-pattern) 1px, transparent 1px);
+    background-size: var(--grid-size, 24px) var(--grid-size, 24px);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Motion
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

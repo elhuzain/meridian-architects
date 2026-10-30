@@ -9,9 +9,27 @@ Build interfaces that feel like an architecture studio's portfolio: restrained, 
 
 # Instructions
 
-1. Before writing code, look for the project's existing design tokens (CSS variables, Tailwind config, theme files). Extend them instead of creating parallel values. If none exist, start from the token block below.
-2. Apply every rule in this file to each component or section you create or adjust, including small edits.
-3. Run the checklist at the end before you finish.
+1. Before writing code, look for the project's existing design tokens (CSS variables, Tailwind config, theme files). Extend them instead of creating parallel values. If none exist, start from `templates/globals.css` for Tailwind v4 projects, or from the token block below otherwise.
+2. When building a section or page that matches one in "Templates", start from that template and adapt its content, data and placement. Don't copy its placeholder text.
+3. Apply every rule in this file to each component or section you create or adjust, including small edits.
+4. Run the checklist at the end before you finish.
+
+## Templates
+
+Working Next.js App Router + Tailwind CSS v4 templates in `templates/`. They rely on the classes and tokens defined in `templates/globals.css`.
+
+| Template | What it is |
+|---|---|
+| `globals.css` | Full design system: `@theme` tokens (color, type scale, spacing, no radius or shadows), base typography, layout utilities (`container-site`, `grid-site`, `section`, `section-dark`), text utilities (`copy`, `meta`), components (`btn`, `btn-solid`, `link`, `link-underline`, `field`, `field-label`, `media`) and background patterns (`bg-grid`, `bg-columns`, `bg-dots`) |
+| `Hero.tsx` | Large image panel inside the margins with overlaid title, copy and CTA, featured-project label bottom right, blueprint grid behind and registration marks on the corners |
+| `FeatureCards.tsx` | Tall hairline-divided cards with thin line icons over a fading drafting grid |
+| `ProjectGrid.tsx` | Staggered asymmetric image grid with hairline captions and slow hover scale |
+
+Notes:
+- Templates use placeholder copy and sample data inline. Move data to the project's data files when there is more than one consumer.
+- Image paths are examples. Use real images at the stated ratios, or leave `.media` empty for a neutral placeholder block.
+- The templates have no animation. For scroll-triggered motion and smooth scrolling, use the `gsap-scroll-animations` skill, which adds `data-animate` attributes to this markup.
+- Use one background pattern per page. The Hero and FeatureCards templates both use `bg-grid`; keep both only because it's the same pattern.
 
 ## Starter tokens
 
