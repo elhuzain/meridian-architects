@@ -6,7 +6,7 @@ export const siteDescription =
   "Meridian Architects is a fictional architecture and engineering studio designing civic, residential and workplace buildings. A demo website by elhuzain.";
 
 export const defaultImage = {
-  url: "/projects/river-pavilion.jpg",
+  url: "/projects/river-pavilion.webp",
   width: 1920,
   height: 1280,
   alt: "River Pavilion at dusk",

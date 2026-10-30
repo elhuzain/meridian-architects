@@ -3,7 +3,7 @@ export type Project = {
   title: string;
   location: string;
   year: number;
-  /** Path under /public, e.g. "/projects/harbourside-library.jpg" */
+  /** Path under /public, e.g. "/projects/harbourside-library.webp" */
   image?: string;
   /** Attribution for licensed stock imagery (demo content) */
   credit?: { author: string; license: string; licenseUrl: string; source: string };
@@ -26,7 +26,7 @@ export const projects: Project[] = [
     title: "Harbourside Library",
     location: "Rotterdam, Netherlands",
     year: 2024,
-    image: "/projects/harbourside-library.jpg",
+    image: "/projects/harbourside-library.webp",
     credit: {
       author: "Dietmar Rabich",
       ...ccBySa4,
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     title: "Stone House",
     location: "Ticino, Switzerland",
     year: 2023,
-    image: "/projects/stone-house.jpg",
+    image: "/projects/stone-house.webp",
     credit: {
       author: "Dietmar Rabich",
       ...ccBySa4,
@@ -87,7 +87,7 @@ export const projects: Project[] = [
     title: "Kiln Yard Offices",
     location: "Copenhagen, Denmark",
     year: 2022,
-    image: "/projects/kiln-yard-offices.jpg",
+    image: "/projects/kiln-yard-offices.webp",
     credit: {
       author: "Dietmar Rabich",
       ...ccBySa4,
@@ -117,7 +117,7 @@ export const projects: Project[] = [
     title: "River Pavilion",
     location: "Porto, Portugal",
     year: 2021,
-    image: "/projects/river-pavilion.jpg",
+    image: "/projects/river-pavilion.webp",
     credit: {
       author: "Anıl Öztaş",
       ...ccBySa4,
