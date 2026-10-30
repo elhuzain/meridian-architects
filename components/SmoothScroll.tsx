@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePathname } from "next/navigation";
-import { useEffect, type ReactNode } from "react";
+import { useLayoutEffect, type ReactNode } from "react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
 
@@ -55,8 +55,11 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     return () => mm.revert();
   });
 
-  // Page heights change on client-side navigation
-  useEffect(() => {
+  // On client-side navigation, start the new page at the top and re-measure.
+  // A layout effect so it runs before ScrollAnimations builds the new page's triggers.
+  useLayoutEffect(() => {
+    const smoother = ScrollSmoother.get();
+    if (smoother && !window.location.hash) smoother.scrollTop(0);
     ScrollTrigger.refresh();
   }, [pathname]);
 
