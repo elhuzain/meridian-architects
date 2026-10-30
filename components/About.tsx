@@ -12,22 +12,25 @@ export default function About() {
       <div className="container-site">
         <div className="grid-site gap-y-16">
           <figure className="col-span-12 flex flex-col md:col-span-6 lg:col-span-5">
-            <div className="media aspect-4/5 md:aspect-auto md:min-h-[480px] md:flex-1">
-              <Image
-                src="/studio/workshop-floor.jpg"
-                alt="An architect cutting parts for a timber model on the studio workshop floor"
-                fill
-                sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw"
-                className="object-cover"
-              />
+            <div data-animate="reveal" className="media aspect-4/5 md:aspect-auto md:min-h-[480px] md:flex-1">
+              {/* Taller than the frame so the parallax shift never shows an edge */}
+              <div data-speed="auto" className="absolute inset-x-0 -top-[10%] h-[120%]">
+                <Image
+                  src="/studio/workshop-floor.jpg"
+                  alt="An architect cutting parts for a timber model on the studio workshop floor"
+                  fill
+                  sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
-            <figcaption className="meta mt-4">The studio, workshop floor</figcaption>
+            <figcaption data-animate="fade" data-delay="0.8" className="meta mt-4">The studio, workshop floor</figcaption>
           </figure>
 
           <div className="col-span-12 self-end md:col-span-6 lg:col-span-6 lg:col-start-7">
-            <h2>A studio where architecture and engineering share one desk</h2>
+            <h2 data-animate="fade-up">A studio where architecture and engineering share one desk</h2>
 
-            <div className="mt-stack space-y-6">
+            <div data-animate="stagger" data-delay="0.15" className="mt-stack space-y-6">
               <p className="copy">
                 For two decades we have worked across disciplines, with
                 architects and structural engineers designing side by side from
@@ -41,7 +44,7 @@ export default function About() {
               </p>
             </div>
 
-            <dl className="mt-16 grid grid-cols-3 gap-gutter border-t border-line pt-8">
+            <dl data-animate="stagger" className="mt-16 grid grid-cols-3 gap-gutter border-t border-line pt-8">
               {facts.map((fact) => (
                 <div key={fact.label}>
                   <dt className="meta">{fact.label}</dt>
@@ -50,7 +53,7 @@ export default function About() {
               ))}
             </dl>
 
-            <a href="#team" className="link-underline mt-12 inline-block text-ink">
+            <a href="#team" data-animate="fade-up" className="link-underline mt-12 inline-block text-ink">
               Meet the team
             </a>
           </div>

@@ -24,6 +24,8 @@ export default function Hero() {
               key={position}
               aria-hidden
               viewBox="0 0 32 32"
+              data-animate="fade"
+              data-delay="1.2"
               className={`absolute z-10 size-8 text-ink/40 ${position}`}
               fill="none"
               stroke="currentColor"
@@ -34,16 +36,19 @@ export default function Hero() {
             </svg>
           ))}
 
-          <div className="media relative min-h-150 md:aspect-16/10 lg:aspect-video">
+          <div data-animate="reveal" className="media relative min-h-150 md:aspect-16/10 lg:aspect-video">
             {featured.image && (
-              <Image
-                src={featured.image}
-                alt={`${featured.title}, ${featured.location}`}
-                fill
-                priority
-                sizes="(min-width: 1440px) 1280px, 100vw"
-                className="object-cover"
-              />
+              // Taller than the frame so the parallax shift never shows an edge
+              <div data-speed="auto" className="absolute inset-x-0 -top-[10%] h-[120%]">
+                <Image
+                  src={featured.image}
+                  alt={`${featured.title}, ${featured.location}`}
+                  fill
+                  priority
+                  sizes="(min-width: 1440px) 1280px, 100vw"
+                  className="object-cover"
+                />
+              </div>
             )}
 
             {/* Soft dark overlay so the text stays legible over the photo */}
@@ -52,14 +57,16 @@ export default function Hero() {
             <div className="absolute inset-0 flex items-end p-6 sm:p-10 lg:p-16">
               <div className="grid w-full grid-cols-12 gap-x-gutter gap-y-12">
                 <div className="col-span-12 lg:col-span-8">
-                  <h1 className="text-paper text-7xl!">Architecture that holds its ground, shaped by light and structure</h1>
-                  <p className="mt-stack max-w-[52ch] text-body text-paper/80">
+                  <h1 data-animate="fade-up" data-delay="0.7" className="text-paper text-7xl!">Architecture that holds its ground, shaped by light and structure</h1>
+                  <p data-animate="fade-up" data-delay="0.7" className="mt-stack max-w-[52ch] text-body text-paper/80">
                     We are an architecture and engineering studio designing civic, residential and workplace
                     buildings. Each project begins with the site and ends with a structure built to last for
                     generations.
                   </p>
                   <a
                     href="#projects"
+                    data-animate="fade-up"
+                    data-delay="0.7"
                     className="btn mt-10 border-paper bg-paper text-ink hover:bg-transparent hover:text-paper"
                   >
                     View our work
@@ -69,6 +76,8 @@ export default function Hero() {
 
                 <Link
                   href={`/projects/${featured.slug}`}
+                  data-animate="fade-up"
+                  data-delay="0.7"
                   className="col-span-12 self-end border-t border-paper/25 pt-4 text-right text-paper transition-colors duration-500 ease-arch hover:text-paper/70 lg:col-span-3 lg:col-start-10"
                 >
                   <span className="block text-lg font-light">{featured.title}</span>
