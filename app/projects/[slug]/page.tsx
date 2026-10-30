@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { pageMetadata } from "@/lib/metadata";
 import { projects } from "@/lib/projects";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -19,10 +20,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = published.find((p) => p.slug === slug);
   if (!project) return {};
-  return {
-    title: `${project.title} — Meridian Architects`,
-    description: project.details?.summary,
-  };
+  return pageMetadata({
+    title: project.title,
+    description: project.details!.summary,
+    path: `/projects/${project.slug}`,
+    image: project.image
+      ? { url: project.image, width: 1920, height: 1280, alt: `${project.title}, ${project.location}` }
+      : undefined,
+  });
 }
 
 export default async function ProjectPage({ params }: Props) {
